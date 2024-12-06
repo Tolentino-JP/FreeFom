@@ -1,24 +1,19 @@
 package com.example.freefom
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.postgrest.Postgrest
+import java.sql.Connection
 
-
-
-val supabase = createSupabaseClient(
-    supabaseUrl = "https://cqvadupqmvxnjoquzjaw.supabase.co",
-    supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxdmFkdXBxbXZ4bmpvcXV6amF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMyNDA1NzcsImV4cCI6MjA0ODgxNjU3N30.Px2zFSKfjlPWgeIkduz25tp5Cw_y6DM35v7AjDNcQ1I"
-) {
-    install(Postgrest)
-}
-
+private val con = Database()
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +23,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        con.connectToDatabase()
+
+    }
+
+    fun SignIn(view: View) {
+
+        val email = findViewById<Button>(R.id.inputEmail)
+        val password = findViewById<TextView>(R.id.inputPassword)
+
 
     }
 
