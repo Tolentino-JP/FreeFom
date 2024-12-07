@@ -1,7 +1,6 @@
 package com.example.freefom
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +13,8 @@ private val con = Database()
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var loginBtn: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,17 +25,41 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        con.connectToDatabase()
+        loginBtn = findViewById(R.id.btnSign)
+
+        loginBtn.setOnClickListener{
+            val login = LoginUser()
+
+            val email = findViewById<TextView>(R.id.inputEmail)
+            val password = findViewById<TextView>(R.id.inputPassword)
+            val errorCred = findViewById<TextView>(R.id.errorTxt)
+
+            if(email.text.isNullOrEmpty() || password.text.isNullOrEmpty()){
+                errorCred.visibility = TextView.VISIBLE
+            }else{
+                login.Login(email.text.toString(), password.text.toString())
+            }
+
+
+
+
+        }
+
+
+
+
 
     }
 
-    fun SignIn(view: View) {
-
-        val email = findViewById<Button>(R.id.inputEmail)
-        val password = findViewById<TextView>(R.id.inputPassword)
-
-
-    }
+//    fun SignIn() {
+//
+//        con.connectToDatabase().use { conn ->
+//            val statement = conn.createStatement()
+//            val resultSet = statement.executeQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")
+//            println(resultSet.next())
+//        }
+//
+//    }
 
 }
 
