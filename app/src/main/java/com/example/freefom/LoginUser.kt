@@ -1,5 +1,6 @@
 package com.example.freefom
 
+import java.sql.DriverManager
 import java.sql.ResultSet
 
 class LoginUser {
@@ -10,8 +11,9 @@ class LoginUser {
 
         val resultSet: ResultSet
 
-        con.connectToDatabase().use { conn ->
-            val statement = conn.createStatement()
+        val connect = DriverManager.getConnection(con.url, con.user, con.password)
+        connect.use {
+            val statement = connect.createStatement()
             resultSet = statement.executeQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")
             //resultSet = statement.executeQuery("SELECT * FROM users")
 
