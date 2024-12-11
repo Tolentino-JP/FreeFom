@@ -1,49 +1,78 @@
 package com.example.freefom
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.sql.Connection
 
-private val con = Database()
+
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var loginBtn: Button
+    lateinit var createAccount: TextView
+    lateinit var emailLogin: EditText
+    lateinit var passwordLogin: EditText
+//    lateinit var passwordInput: EditText
+//    lateinit var emailInput:  EditText
+    lateinit var errorText: TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         setContentView(R.layout.login_page)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         loginBtn = findViewById(R.id.btnSign)
+        errorText = findViewById(R.id.errorTxt)
+        emailLogin = findViewById(R.id.emailLogin)
+        passwordLogin = findViewById(R.id.passwordLogin)
+        createAccount = findViewById(R.id.createAccountBtn)
+//        passwordInput = findViewById(R.id.passwrodInput)
+//        emailInput = findViewById(R.id.emailInput)
+
+
 
         loginBtn.setOnClickListener{
-            val login = LoginUser()
 
-            val email = findViewById<TextView>(R.id.inputEmail)
-            val password = findViewById<TextView>(R.id.inputPassword)
-            val errorCred = findViewById<TextView>(R.id.errorTxt)
-
-            if(email.text.isNullOrEmpty() || password.text.isNullOrEmpty()){
-                errorCred.visibility = TextView.VISIBLE
+            if(emailLogin.text.toString().isEmpty() || passwordLogin.text.toString().isEmpty()){
+                errorText.visibility = TextView.VISIBLE
             }else{
-                login.Login(email.text.toString(), password.text.toString())
+
+                var userModel = UserModel()
+
+                try {
+                    userModel = UserModel(emailLogin.text.toString(), passwordLogin.text.toString())
+
+                }catch (e: Exception){
+                    Toast.makeText(this, "Error login",Toast.LENGTH_SHORT).show()
+                }
+
+                var dataBaseHelper = DataBaseHelper(this)
+                //val success = dataBaseHelper.Login(userModel)
             }
 
 
 
 
-        }
+        }// end login
+
+
+        createAccount.setOnClickListener( View.OnClickListener {
+
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+
+        })
+
+
 
 
 
@@ -51,15 +80,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    fun SignIn() {
-//
-//        con.connectToDatabase().use { conn ->
-//            val statement = conn.createStatement()
-//            val resultSet = statement.executeQuery("SELECT * FROM users WHERE email = '$email' AND password = '$password'")
-//            println(resultSet.next())
-//        }
-//
-//    }
 
 }
 

@@ -38,12 +38,14 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fnameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
                 android:hint="FIrst Name"
                 android:inputType="text"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginBottom="15dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -51,12 +53,15 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lnameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
                 android:hint="Last Name"
                 android:inputType="text"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,6 +69,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
@@ -77,6 +83,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwrodInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
@@ -84,19 +91,14 @@
                 android:inputType="text|textPassword"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/createBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="CREATE ACCOUNT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.098" />
+        <Button
+            android:id="@+id/createBtn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="CREATE ACCOUNT"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView7"
