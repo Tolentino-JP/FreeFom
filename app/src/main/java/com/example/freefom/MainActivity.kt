@@ -2,7 +2,6 @@ package com.example.freefom
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,19 +13,17 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var loginBtn: Button
-    lateinit var createAccount: TextView
-    lateinit var emailLogin: EditText
-    lateinit var passwordLogin: EditText
-//    lateinit var passwordInput: EditText
-//    lateinit var emailInput:  EditText
-    lateinit var errorText: TextView
+    private lateinit var loginBtn: Button
+    private lateinit var createAccount: TextView
+    private lateinit var emailLogin: EditText
+    private lateinit var passwordLogin: EditText
+    private lateinit var errorText: TextView
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         setContentView(R.layout.login_page)
 
 
@@ -35,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         emailLogin = findViewById(R.id.emailLogin)
         passwordLogin = findViewById(R.id.passwordLogin)
         createAccount = findViewById(R.id.createAccountBtn)
-//        passwordInput = findViewById(R.id.passwrodInput)
-//        emailInput = findViewById(R.id.emailInput)
 
 
 
@@ -55,27 +50,47 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error login",Toast.LENGTH_SHORT).show()
                 }
 
-                var dataBaseHelper = DataBaseHelper(this)
-                //val success = dataBaseHelper.Login(userModel)
+                val dataBaseHelper = DataBaseHelper(this)
+                val success = dataBaseHelper.Login(userModel)
+
+                var fName = ""
+                var lName = ""
+
+                if(success.isNotEmpty()){
+                    for(user in success){
+                        fName = user.first_name
+                        lName = user.last_name
+                    }
+
+                    val intent = Intent(this, HomePageActivity::class.java)
+                    intent.putExtra("first_name", fName)
+                    intent.putExtra("last_name", lName)
+                    startActivity(intent)
+
+
+//                    Toast.makeText(this, success.toString(), Toast.LENGTH_SHORT).show()
+
+                }else{
+                    Toast.makeText(this, "Error: User not exist", Toast.LENGTH_SHORT).show()
+                }
+
+
+
+
+
+
+
             }
-
-
-
 
         }// end login
 
 
-        createAccount.setOnClickListener( View.OnClickListener {
+        createAccount.setOnClickListener {
 
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
 
-        })
-
-
-
-
-
+        }
 
 
     }

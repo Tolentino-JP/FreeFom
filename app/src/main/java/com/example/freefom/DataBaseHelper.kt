@@ -14,7 +14,7 @@ public class DataBaseHelper(context: Context?) : SQLiteOpenHelper(context, "user
     val columnPassword = "password"
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableStatement = "CREATE TABLE $tableName (id INTEGER primary AUTOINCREMENT, $columnFirstName varchar not null, $columnLastName varchar not null, $columnEmail varchar not null, $columnPassword varchar not null);"
+        val createTableStatement = "CREATE TABLE $tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, $columnFirstName varchar not null, $columnLastName varchar not null, $columnEmail varchar not null, $columnPassword varchar not null);"
 
         db?.execSQL(createTableStatement)
 
@@ -41,6 +41,42 @@ public class DataBaseHelper(context: Context?) : SQLiteOpenHelper(context, "user
             return true
         }
 
+    }
+
+
+    fun Login(userModel: UserModel): List<UserModel>{
+
+        val returnList = mutableListOf<UserModel>()
+
+        val query = "SELECT * FROM $tableName WHERE email = '"+ userModel.email +"' AND password = '"+ userModel.password +"' "
+
+        var db = this.readableDatabase
+        var queryResult = db.rawQuery(query, null)
+
+
+        if(queryResult.moveToFirst()){
+
+            do{
+                var userId = queryResult.getInt(0)
+                var first_name = queryResult.getString(1)
+                var last_name = queryResult.getString(2)
+                var email = queryResult.getString(3)
+                var password = queryResult.getString(4)
+
+                var userModel = UserModel(userId, first_name, last_name, email, password)
+                returnList.add(userModel)
+
+
+            }while (queryResult.moveToNext())
+
+        }else{
+            // nothing to do here
+        }
+        queryResult.close()
+        db.close()
+
+
+        return returnList
     }
 
 
