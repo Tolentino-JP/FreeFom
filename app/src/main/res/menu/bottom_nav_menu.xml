@@ -3,11 +3,11 @@
 
     <item android:title="Home"
         android:icon="@drawable/ic_home_24"
-        android:id="@+id/ic_home"/>
+        android:id="@+id/nav_home"/>
     <item android:title="Support"
         android:icon="@drawable/ic_contact_support_24"
-        android:id="@+id/support"/>
+        android:id="@+id/nav_support"/>
     <item android:title="Settings"
         android:icon="@drawable/ic_settings"
-        android:id="@+id/settings"/>
+        android:id="@+id/nav_settings"/>
 </menu>

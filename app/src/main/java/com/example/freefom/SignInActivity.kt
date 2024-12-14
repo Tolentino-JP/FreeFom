@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 
-class MainActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
 
     private lateinit var loginBtn: Button
     private lateinit var createAccount: TextView
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 val dataBaseHelper = DataBaseHelper(this)
-                val success = dataBaseHelper.Login(userModel)
+                val success = dataBaseHelper.login(userModel)
 
                 var fName = ""
                 var lName = ""
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                         lName = user.last_name
                     }
 
-                    val intent = Intent(this, HomePageActivity::class.java)
+                    val intent = Intent(this, MainNavActivity::class.java)
                     intent.putExtra("first_name", fName)
                     intent.putExtra("last_name", lName)
                     startActivity(intent)

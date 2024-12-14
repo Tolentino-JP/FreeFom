@@ -33,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
         password = findViewById(R.id.passwrodInput)
         signIn = findViewById(R.id.signInTxt)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SignInActivity::class.java)
 
 
         signupBtn.setOnClickListener{
@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
                 val dataBaseHelper = DataBaseHelper(this)
-                val success = dataBaseHelper.SignUp(userModel)
+                val success = dataBaseHelper.signUp(userModel)
 
                 if(success){
                     startActivity(intent)
