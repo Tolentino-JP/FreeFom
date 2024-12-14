@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SettingsActivity">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/textSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:fontFamily="@font/bukhari_script"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <LinearLayout
+        android:id="@+id/profilePicture"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/top_view"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/profileView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/circle_bg"
+            android:src="@drawable/user_icon"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/firstName_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstName LastName"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:fontFamily="@font/bukhari_script"
+            android:layout_marginTop="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textMain"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/cardview_light_background"
+        android:layout_below="@id/profilePicture" >
+
+        <Button
+            android:id="@+id/btnProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Edit Profile" />
+
+        <Button
+            android:id="@+id/btnPassword"
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Change Password" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Sign Out" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

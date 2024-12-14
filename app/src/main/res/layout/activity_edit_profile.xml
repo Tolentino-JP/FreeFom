@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="16dp"
+    tools:context=".editProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp" >
+
+        <!-- Back Button -->
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"
+            android:layout_marginBottom="16dp"
+            android:onClick="onBackPressed" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Profile Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About you"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile Picture"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Profile Picture -->
+            <ImageView
+                android:id="@+id/profileView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/circle_bg"
+                android:src="@drawable/user_icon"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- First Name Label -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="First Name"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <!-- Last Name Label -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last Name"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Input Fields -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <!-- First Name Input -->
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:autofillHints="name"
+                android:textSize="16sp"
+                android:hint="Enter First Name"
+                android:layout_weight="1"
+                android:background="@drawable/btn1"
+                android:inputType="textPersonName" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <!-- Last Name Input -->
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:autofillHints="name"
+                android:textSize="16sp"
+                android:hint="Enter Last Name"
+                android:layout_weight="1"
+                android:background="@drawable/btn1"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:autofillHints="emailAddress"
+            android:textSize="16sp"
+            android:hint="Enter Email"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn1"
+            android:inputType="textEmailAddress" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:layout_width="95dp"
+                android:layout_height="48dp"
+                android:text="Cancel"
+                android:textStyle="bold"
+                android:background="@drawable/btn1" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <Button
+                android:layout_width="95dp"
+                android:layout_height="48dp"
+                android:text="Save"
+                android:textStyle="bold"
+                android:background="@drawable/btn1" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
