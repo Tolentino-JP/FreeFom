@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "601831812263",
+    "project_id": "freefrom-bb68e",
+    "storage_bucket": "freefrom-bb68e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601831812263:android:d2e0f68fe2ab79dd027f82",
+        "android_client_info": {
+          "package_name": "com.example.freefom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh-f-bgHfiZrFYcrpwZi9aQYurNLUGTf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

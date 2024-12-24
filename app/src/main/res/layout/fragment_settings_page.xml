@@ -2,103 +2,100 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/signOutBtn"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SettingsFragment">
+    android:background="@color/white"
+    tools:context="fragments.SettingsFragment">
 
-
-
-    <ScrollView
+    <View
+        android:id="@+id/top_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".VerticalScrollViewActivity"
-        android:background="@color/white">
+        android:layout_height="100dp"
+        android:background="@color/black" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/textSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
+    <LinearLayout
+        android:id="@+id/profilePicture"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/top_view"
+        android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:textSize="50sp"
-                android:gravity="center"
-                android:background="@color/grey"
-                android:textColor="@color/black"
-                android:padding="20dp"
-                />
+        <ImageView
+            android:id="@+id/profileView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/circle_bg"
+            android:src="@drawable/ic_person"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_person"
-                android:layout_marginTop="40dp"
-                app:strokeWidth="5dp"
-                app:strokeColor="@color/black"
-                app:shapeAppearanceOverlay="@style/Circular"
-                />
+        <TextView
+            android:id="@+id/firstName_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstName LastName"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp">
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="First Name "
-                    android:textSize="20dp"/>
+    <LinearLayout
+        android:id="@+id/textMain"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/cardview_light_background"
+        android:layout_below="@id/profilePicture" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Last Name"
-                    android:textSize="20sp"/>
+        <Button
+            android:id="@+id/btnProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Edit Profile" />
 
-            </LinearLayout>
+        <Button
+            android:id="@+id/btnPassword"
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Change Password" />
 
-            <Button
-                android:id="@+id/editProfileBtn"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:background="@color/white"
-                android:text="Edit Profile" />
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn1"
+            android:text="Sign Out" />
 
-            <Button
-                android:id="@+id/changePassBtn"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:text="Change Password" />
+    </LinearLayout>
 
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Sign Out"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_button"/>
-
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
-
-
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

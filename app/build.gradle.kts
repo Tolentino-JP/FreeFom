@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 //    kotlin("plugin.serialization") version "1.9.24"
 }
 
@@ -51,11 +52,15 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.runtime.saved.instance.state)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("org.postgresql:postgresql:42.2.20")
+//    implementation(libs.mongodb.driver.kotlin.coroutine)
+//    implementation(libs.mongodb.bson.kotlinx)
+
 
 //    implementation(platform("io.github.jan-tennert.supabase:bom:3.0.2"))
 //    implementation("io.github.jan-tennert.supabase:postgrest-kt")

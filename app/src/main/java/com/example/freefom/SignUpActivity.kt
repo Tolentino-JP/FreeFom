@@ -1,16 +1,24 @@
 package com.example.freefom
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 
 
 class SignUpActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var signupBtn: Button
     private lateinit var fName: EditText
@@ -22,9 +30,9 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.signup_page)
 
+        auth = Firebase.auth
 
         signupBtn = findViewById(R.id.signupBtn)
         fName = findViewById(R.id.fnameInput)
@@ -33,43 +41,55 @@ class SignUpActivity : AppCompatActivity() {
         password = findViewById(R.id.passwrodInput)
         signIn = findViewById(R.id.signInTxt)
 
-        val intent = Intent(this, SignInActivity::class.java)
-
-
         signupBtn.setOnClickListener{
-            
-            if(fName.text.toString().isEmpty() || lName.text.toString().isEmpty() || email.text.toString().isEmpty() || password.text.toString().isEmpty()){
-                Toast.makeText(this, "Error: Fill all the empty box", Toast.LENGTH_SHORT).show()
-            }else{
-
-                var userModel = UserModel()
-
-                try{
-                    userModel = UserModel(-1, fName.text.toString(), lName.text.toString(), email.text.toString(), password.text.toString())
-                }catch(e: Exception){
-                    Toast.makeText(this, "Error login",Toast.LENGTH_SHORT).show()
-                }
-
-                val dataBaseHelper = DataBaseHelper(this)
-                val success = dataBaseHelper.signUp(userModel)
-
-                if(success){
-                    startActivity(intent)
-//                    Toast.makeText(this, "Success Created", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this, "Error: SignUp Failed", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-            
-        }// end signup
-
+            signUp(email.text.toString(), password.text.toString(), fName.text.toString(), lName.text.toString())
+        }
         signIn.setOnClickListener{
-            startActivity(intent)
-        }// end
-
-
-
-
+            Intent(this, SignInActivity::class.java).also { startActivity(it) }
+        }
     }
+
+    private fun signUp(email: String, password: String, fName: String, lName: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        val db = Firebase.firestore
+                        val users = hashMapOf(
+                            "first name" to fName,
+                            "last name" to lName
+                        )
+
+                        db.collection("users").document(userId).set(users)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "DocumentSnapshot successfully written!")
+                                Toast.makeText(
+                                    baseContext,
+                                    "User registered successfully.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error writing document", e)
+                            }
+                        Intent(this, SignInActivity::class.java).also { startActivity(it) }
+
+                    } else {
+                        Log.w(TAG, "User ID is null after successful authentication.")
+                    }
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }// end signUp
 }
