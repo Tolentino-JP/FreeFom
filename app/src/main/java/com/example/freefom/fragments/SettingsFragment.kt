@@ -55,12 +55,8 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Retrieve arguments
-        val firstName = arguments?.getString("first_name")
-        val lastName = arguments?.getString("last_name")
 
-        // Use the data (for example, setting it in a TextView)
-        val textView = view.findViewById<TextView>(R.id.text1)
-        textView.text = "First Name: $firstName, Last Name: $lastName"
+
+
     }
 }

@@ -23,7 +23,7 @@ class ChangePasswordActivity : Fragment() {
 
         view = inplater.inflate(R.layout.fragment_change_password, container, false)
 
-        val backToSettingsBtn = view.findViewById<TextView>(R.id.backToSettingsBtn)
+        val backToSettingsBtn = view.findViewById<TextView>(R.id.backBtn)
 
         backToSettingsBtn.setOnClickListener {
             // Navigate back to the previous fragment
