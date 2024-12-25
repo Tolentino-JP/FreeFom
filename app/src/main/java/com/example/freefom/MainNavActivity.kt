@@ -30,19 +30,11 @@ class MainNavActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.nav_home
         bottomNav.setOnItemSelectedListener(navListener)
 
-
-
+        //default when load
         val selectedFragment = HomeFragment()
-
-
 
         selectedFragment.arguments = bundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, selectedFragment).commit()
-
-
-
-
-
 
     }
 

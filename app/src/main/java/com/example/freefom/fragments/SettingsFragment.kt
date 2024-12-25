@@ -30,9 +30,9 @@ class SettingsFragment : Fragment() {
 
         view = inplater.inflate(R.layout.fragment_settings_page, container, false)
 
-        editProfile = view.findViewById(R.id.editProfileBtn)
-        changePassword = view.findViewById(R.id.changePassBtn)
-        signOut = view.findViewById(R.id.signOutBtn)
+        editProfile = view.findViewById(R.id.btnEditProfile)
+        changePassword = view.findViewById(R.id.btnEditPassword)
+        signOut = view.findViewById(R.id.btnSignout)
 
 
 
