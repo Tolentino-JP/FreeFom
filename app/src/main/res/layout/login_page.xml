@@ -17,6 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/purple"
+        android:fontFamily="@font/bukhari_script"
         app:layout_constraintVertical_bias="0.31"/>
 
     <LinearLayout
@@ -32,29 +34,22 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.103">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/emailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:background="@drawable/btn1"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text|textPassword"
-                android:hint="Password" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textPassword"
+            android:hint="Password"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn1"/>
 
         <TextView
             android:id="@+id/errorTxt"
@@ -81,13 +76,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I do not have an account yet. " />
+                android:text="I do not have an account yet. "
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/createAccountBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Create Account"
                 android:textStyle="bold"/>
         </LinearLayout>

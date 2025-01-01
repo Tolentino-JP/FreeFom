@@ -19,6 +19,7 @@ import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 
 class AddAddiction : DialogFragment() {
@@ -58,6 +59,9 @@ class AddAddiction : DialogFragment() {
 
             if(addictionName.text.isNotEmpty() && time.text.isNotEmpty()){
                 val timestamp = convertToTimestamp(time.text.toString())
+
+                Toast.makeText(requireContext(), time.text.toString(), Toast.LENGTH_SHORT).show()
+
                 if(timestamp != null){
                     addData(addictionName.text.toString(), timestamp)
                 }
@@ -120,11 +124,15 @@ class AddAddiction : DialogFragment() {
 
     private fun dateTimePicker(){
 
+        val calendar = Calendar.getInstance()
+        val philippineTimeZone = TimeZone.getTimeZone("Asia/Manila")
+
         DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
 
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
 
             TimePickerDialog(
                 requireContext(),
@@ -133,8 +141,10 @@ class AddAddiction : DialogFragment() {
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                     calendar.set(Calendar.MINUTE, minute)
 
-                    val format = "dd-MM-yyyy HH:mm:ss"
+                    val format = "MM-dd-yyyy HH:mm:ss"
                     val dateFormat = SimpleDateFormat(format, Locale.US)
+
+                    dateFormat.timeZone = TimeZone.getDefault()
 
                     time.setText(dateFormat.format(calendar.time))
                 },

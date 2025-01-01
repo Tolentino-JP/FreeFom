@@ -21,11 +21,14 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class HomeFragment : Fragment() {
-
 
     private lateinit var view: View
     private lateinit var linearLayoutContainer: LinearLayout
@@ -33,7 +36,6 @@ class HomeFragment : Fragment() {
     private lateinit var searchBtn: ImageView
     private val db = Firebase.firestore
     private val auth = Firebase.auth
-
 
     @Nullable
     override fun onCreateView(
@@ -45,23 +47,15 @@ class HomeFragment : Fragment() {
 
         view = inplater.inflate(R.layout.fragment_home_page, container, false)
 
-
-
         return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        
         addBtn = view.findViewById(R.id.addButton)
         searchBtn = view.findViewById(R.id.searchBtn)
         linearLayoutContainer = view.findViewById(R.id.layoutContainer)
-
-        val editMode = view.findViewById<LinearLayout>(linearLayoutContainer.id)
-
-
 
 
         addBtn.setOnClickListener{
@@ -74,18 +68,23 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+
+
         val userId = auth.currentUser?.uid
         if (userId != null) {
-            fetchDataForUser(userId)
+            fetchFullName(userId)
+            fetchDataAddiction(userId)
         } else {
             // Handle case when user is not authenticated
             showError("User not logged in.")
         }
 
 
+
+
     }
 
-    private fun fetchDataForUser(userId: String) {
+    private fun fetchDataAddiction(userId: String) {
         db.collection("addiction")
             .document(userId)
             .get()
@@ -126,6 +125,7 @@ class HomeFragment : Fragment() {
 
                             var formattedDate: String = ""
                             if(time is Timestamp){
+                                dateTimeSample(time)
                                 formattedDate = convertTimestampToDate(time)
                             }
 
@@ -149,24 +149,6 @@ class HomeFragment : Fragment() {
                                 // Add the TextView to the LinearLayout
                             linearLayoutContainer.addView(linearLayout)
 
-                            // Iterate through the map's entries
-//                            for ((innerKey, innerValue) in value) {
-//                                Log.d(TAG, "Inner Key: $innerKey, Inner Value: $innerValue")
-//                                var formattedDate: String = ""
-//                                if(innerValue is Timestamp){
-//                                    formattedDate = convertTimestampToDate(innerValue)
-//                                }
-//
-//
-//                                // Create a TextView dynamically for each entry in the nested map
-//                                val entryTextView = TextView(requireContext())
-//                                entryTextView.text = "$key -> $innerKey: $formattedDate"
-//                                entryTextView.textSize = 16f
-//                                entryTextView.setPadding(8, 8, 8, 8)
-//
-//                                // Add the TextView to the LinearLayout
-//                                linearLayoutContainer.addView(entryTextView)
-//                            }
                         } else {
                             Log.d(TAG, "Key: $key, Value: $value")
 
@@ -184,21 +166,28 @@ class HomeFragment : Fragment() {
 
                 }
 
-                // Create a TextView dynamically
-//                val userTextView = TextView(requireContext())
-//                userTextView.text = documents.data.toString()
-//                userTextView.textSize = 16f
-//                userTextView.setPadding(8, 8, 8, 8)
-//
-//                // Add the TextView to the LinearLayout
-//                linearLayoutContainer.addView(userTextView)
-
-
-
             }
             .addOnFailureListener { exception ->
                 exception.printStackTrace()
             }
+    }
+
+    private fun fetchFullName(userId: String){
+
+        db.collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { documents ->
+
+                val firstName = documents.getString("first name")
+                val lastName = documents.getString("last name")
+
+                val fullName = view.findViewById<TextView>(R.id.fullNameTxt)
+
+                fullName.text = "$firstName $lastName"
+
+            }
+
     }
 
     private fun showError(message: String) {
@@ -207,6 +196,20 @@ class HomeFragment : Fragment() {
         errorTextView.textSize = 16f
         errorTextView.setPadding(8, 8, 8, 8)
         linearLayoutContainer.addView(errorTextView)
+    }
+
+    private fun dateTimeSample(timestamp: Timestamp) {
+        val date: Date = timestamp.toDate() // Convert Timestamp to Date
+        val currentDate = Date() // Get current date and time
+
+        // Calculate the difference in milliseconds
+        val differenceInMillis = currentDate.time - date.time
+
+        // Convert the difference to days
+        val daysPassed = TimeUnit.MILLISECONDS.toDays(differenceInMillis)
+
+        // Show the number of days passed in a Toast
+        Toast.makeText(requireContext(), "$daysPassed days have passed", Toast.LENGTH_SHORT).show()
     }
 
     private fun convertTimestampToDate(timestamp: Timestamp): String {
