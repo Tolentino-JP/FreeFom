@@ -39,14 +39,14 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/circle_bg"
+            android:src="@drawable/ic_default_user"
             android:scaleType="centerCrop"
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/firstName_lastName"
+            android:id="@+id/fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FirstName LastName"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:fontFamily="@font/bukhari_script"
@@ -92,11 +92,5 @@
 
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

@@ -20,13 +20,6 @@ class MainNavActivity : AppCompatActivity() {
         setContentView(R.layout.main_nav_activity)
 
         bottomNav = findViewById(R.id.bottomNavigationView)
-
-        val firstName = intent.getStringExtra("first_name")
-        val lastName = intent.getStringExtra("last_name")
-
-        bundle.putString("first_name", firstName)
-        bundle.putString("last_name", lastName)
-
         bottomNav.selectedItemId = R.id.nav_home
         bottomNav.setOnItemSelectedListener(navListener)
 

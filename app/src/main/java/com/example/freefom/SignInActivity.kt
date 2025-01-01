@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 
 class SignInActivity : AppCompatActivity() {
@@ -30,14 +32,13 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
+        auth = Firebase.auth
+
         loginBtn = findViewById(R.id.btnSign)
         errorText = findViewById(R.id.errorTxt)
         emailLogin = findViewById(R.id.emailLogin)
         passwordLogin = findViewById(R.id.passwordLogin)
         createAccount = findViewById(R.id.createAccountBtn)
-
-
-        auth = Firebase.auth
 
         loginBtn.setOnClickListener{
             if(emailLogin.text.toString().isEmpty() || passwordLogin.text.toString().isEmpty()){
@@ -48,8 +49,8 @@ class SignInActivity : AppCompatActivity() {
         }
 
         createAccount.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            Intent(this, SignUpActivity::class.java).also { startActivity(it) }
+
         }
 
     }
@@ -59,9 +60,7 @@ class SignInActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            Intent(this, MainNavActivity::class.java).also {
-                startActivity(it)
-            }
+            Intent(this, MainNavActivity::class.java).also { startActivity(it) }
         }
     }
 

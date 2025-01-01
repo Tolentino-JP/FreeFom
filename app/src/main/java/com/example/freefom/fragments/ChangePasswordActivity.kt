@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -23,7 +24,7 @@ class ChangePasswordActivity : Fragment() {
 
         view = inplater.inflate(R.layout.fragment_change_password, container, false)
 
-        val backToSettingsBtn = view.findViewById<TextView>(R.id.backBtn)
+        val backToSettingsBtn = view.findViewById<ImageView>(R.id.backBtn)
 
         backToSettingsBtn.setOnClickListener {
             // Navigate back to the previous fragment
