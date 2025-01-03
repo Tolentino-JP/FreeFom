@@ -1,29 +1,22 @@
-package com.example.freefom.fragments
+package com.example.freefrom.fragments
 
-import android.app.Activity
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
-import com.example.freefom.MainNavActivity
-import com.example.freefom.R
+import com.example.freefrom.MainNavActivity
+import com.example.freefrom.R
 import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
-import java.time.Duration
-import java.time.Instant
-import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -33,7 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var view: View
     private lateinit var linearLayoutContainer: LinearLayout
     private lateinit var addBtn: ImageView
-    private lateinit var searchBtn: ImageView
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
@@ -54,7 +46,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addBtn = view.findViewById(R.id.addButton)
-        searchBtn = view.findViewById(R.id.searchBtn)
         linearLayoutContainer = view.findViewById(R.id.layoutContainer)
 
 
@@ -63,11 +54,12 @@ class HomeFragment : Fragment() {
             showPopUp.show((activity as MainNavActivity).supportFragmentManager, "showPop")
         }
 
+
+
     }
 
     override fun onStart() {
         super.onStart()
-
 
 
         val userId = auth.currentUser?.uid
@@ -104,7 +96,6 @@ class HomeFragment : Fragment() {
                         // Set up the click listener
                         linearLayout.setOnClickListener { view ->
                             val clickedKey = view.getTag(R.id.linear_layout_key) as String
-                            Log.d(TAG, "Clicked key: $clickedKey")
 
                             // Pass the clickedKey to the EditAddiction fragment
                             val fragment = EditAddiction()
@@ -113,13 +104,11 @@ class HomeFragment : Fragment() {
                             fragment.arguments = args
 
                             // Navigate to the fragment
-//                            (activity as MainNavActivity).replaceFragment(fragment, true)
-                            Toast.makeText(requireContext(), "The key to pass: $clickedKey", Toast.LENGTH_LONG).show()
+                            (activity as MainNavActivity).replaceFragment(fragment, true)
                         }
 
 
                         if (value is Map<*, *>) {
-                            Log.d(TAG, "Key: $key, Value is a Map")
 
                             val time = value["new"]
 
@@ -150,7 +139,6 @@ class HomeFragment : Fragment() {
                             linearLayoutContainer.addView(linearLayout)
 
                         } else {
-                            Log.d(TAG, "Key: $key, Value: $value")
 
                             val entryTextView = TextView(requireContext())
                             entryTextView.text = "$key: $value"
@@ -198,7 +186,7 @@ class HomeFragment : Fragment() {
         linearLayoutContainer.addView(errorTextView)
     }
 
-    private fun dateTimeSample(timestamp: Timestamp) {
+    private fun dateTimeSample(timestamp: Timestamp): Long {
         val date: Date = timestamp.toDate() // Convert Timestamp to Date
         val currentDate = Date() // Get current date and time
 
@@ -208,8 +196,8 @@ class HomeFragment : Fragment() {
         // Convert the difference to days
         val daysPassed = TimeUnit.MILLISECONDS.toDays(differenceInMillis)
 
-        // Show the number of days passed in a Toast
-        Toast.makeText(requireContext(), "$daysPassed days have passed", Toast.LENGTH_SHORT).show()
+
+        return daysPassed
     }
 
     private fun convertTimestampToDate(timestamp: Timestamp): String {

@@ -1,4 +1,4 @@
-package com.example.freefom.fragments
+package com.example.freefrom.fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.freefom.R
+import com.example.freefrom.R
 import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.auth
@@ -28,8 +28,6 @@ class AddAddiction : DialogFragment() {
     private lateinit var doneBtn: TextView
     private lateinit var addictionName: EditText
     private lateinit var time: EditText
-    private val calendar: Calendar = Calendar.getInstance()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,10 +58,9 @@ class AddAddiction : DialogFragment() {
             if(addictionName.text.isNotEmpty() && time.text.isNotEmpty()){
                 val timestamp = convertToTimestamp(time.text.toString())
 
-                Toast.makeText(requireContext(), time.text.toString(), Toast.LENGTH_SHORT).show()
-
                 if(timestamp != null){
                     addData(addictionName.text.toString(), timestamp)
+                    dismiss()
                 }
 
             }
@@ -107,7 +104,6 @@ class AddAddiction : DialogFragment() {
                 ).show()
             }
 
-
     }
 
     private fun convertToTimestamp(dateString: String): Timestamp? {
@@ -125,7 +121,6 @@ class AddAddiction : DialogFragment() {
     private fun dateTimePicker(){
 
         val calendar = Calendar.getInstance()
-        val philippineTimeZone = TimeZone.getTimeZone("Asia/Manila")
 
         DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
 

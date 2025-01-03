@@ -1,4 +1,4 @@
-package com.example.freefom.fragments
+package com.example.freefrom.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -10,24 +10,20 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import com.example.freefom.MainNavActivity
-import com.example.freefom.R
+import com.example.freefrom.MainNavActivity
+import com.example.freefrom.R
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 class EditProfileFragment : Fragment() {
 
-    private lateinit var view: View
     private lateinit var userId: String
-    private lateinit var backToSettingsBtn: Button
     private lateinit var fNameProfile: EditText
     private lateinit var lNameProfile: EditText
-    private lateinit var emailProfile: EditText
     private lateinit var cancelBtn: Button
     private lateinit var saveBtn: Button
-    private val db = Firebase.firestore
-    private val auth = Firebase.auth
 
 
     @Nullable
@@ -38,53 +34,67 @@ class EditProfileFragment : Fragment() {
     ): View {
         super.onCreate(savedInstanceState)
 
-        view = inplater.inflate(R.layout.fragment_edit_profile_page, container, false)
-
-        userId = auth.currentUser!!.uid
-
-        fetchData()
-
-        return view
+        return inplater.inflate(R.layout.fragment_edit_profile_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val db = Firebase.firestore
+        val auth = Firebase.auth
+
+        fNameProfile = view.findViewById(R.id.fNameProfile)
+        lNameProfile = view.findViewById(R.id.lNameProfile)
+
         saveBtn = view.findViewById(R.id.saveBtn)
         cancelBtn = view.findViewById(R.id.cancelBtn)
+        userId = auth.currentUser!!.uid
 
+        fetchData(userId, db)
 
         cancelBtn.setOnClickListener{
             alertDialog()
-//            (activity as MainNavActivity).replaceFragment(SettingsFragment(), true)
         }
 
         saveBtn.setOnClickListener{
 
-
+            updateData(userId, db)
 
         }
 
     }
 
-    private fun fetchData(){
+    override fun onResume() {
+        super.onResume()
+
+
+    }
+
+    private fun updateData(userId: String, db: FirebaseFirestore) {
+
+        val newUserInfo = hashMapOf(
+            "first name" to fNameProfile.text.toString(),
+            "last name" to lNameProfile.text.toString()
+        )
+
+        db.collection("users")
+            .document(userId)
+            .set(newUserInfo)
+
+    }
+
+    private fun fetchData(userId:String, db: FirebaseFirestore){
         db.collection("users")
             .document(userId)
             .get()
             .addOnSuccessListener {
-                fNameProfile = view.findViewById(R.id.fNameProfile)
-                lNameProfile = view.findViewById(R.id.lNameProfile)
-                emailProfile = view.findViewById(R.id.emailProfile)
+
 
                 val fName = it.getString("first name").toString()
                 val lName = it.getString("last name").toString()
-                val email = auth.currentUser!!.email.toString()
 
                 fNameProfile.setText(fName)
                 lNameProfile.setText(lName)
-                emailProfile.setText(email)
-
-
             }
     }
 

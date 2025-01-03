@@ -2,15 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
-//    kotlin("plugin.serialization") version "1.9.24"
 }
 
 android {
-    namespace = "com.example.freefom"
+    namespace = "com.example.freefrom"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.freefom"
+        applicationId = "com.example.freefrom"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

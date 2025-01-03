@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -11,29 +10,19 @@
     android:padding="30dp"
     tools:context="fragments.EditProfileFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical">
 
-        <!-- Back Button -->
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_back"
-            android:contentDescription="Back"
-            android:layout_marginBottom="16dp"/>
-
         <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
@@ -43,36 +32,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="About you"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:hint="Enter something about you...."
-                android:padding="5dp"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="start">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile Picture"
+                android:text="@string/profile_picture"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -84,6 +49,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/circle_bg"
+                android:contentDescription="@string/default_profile_picture"
                 android:src="@drawable/ic_default_user"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="8dp" />
@@ -101,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="First Name"
+                android:text="@string/first_name"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -117,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Last Name"
+                android:text="@string/last_name"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -138,7 +104,7 @@
                 android:layout_height="48dp"
                 android:autofillHints="name"
                 android:textSize="16sp"
-                android:hint="Enter First Name"
+                android:hint="@string/enter_first_name"
                 android:layout_weight="1"
                 android:background="@drawable/btn1"
                 android:inputType="textPersonName"
@@ -157,47 +123,28 @@
                 android:layout_height="48dp"
                 android:autofillHints="name"
                 android:textSize="16sp"
-                android:hint="Enter Last Name"
+                android:hint="@string/enter_last_name"
                 android:layout_weight="1"
                 android:background="@drawable/btn1"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/emailProfile"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:autofillHints="emailAddress"
-            android:textSize="16sp"
-            android:hint="Enter Email"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/btn1"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black"/>
 
         <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="100dp"
             android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/cancelBtn"
                 android:layout_width="95dp"
                 android:layout_height="48dp"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textStyle="bold"
                 android:background="@drawable/btn1" />
 
@@ -211,7 +158,7 @@
                 android:id="@+id/saveBtn"
                 android:layout_width="95dp"
                 android:layout_height="48dp"
-                android:text="Save"
+                android:text="@string/save"
                 android:textStyle="bold"
                 android:background="@drawable/btn1" />
         </LinearLayout>
@@ -219,6 +166,3 @@
 
 
 </ScrollView>
-
-
-

@@ -39,33 +39,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:hint="@string/email"
             android:background="@drawable/btn1"/>
 
         <EditText
             android:id="@+id/passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|textPassword"
-            android:hint="Password"
+            android:importantForAutofill="no" android:inputType="text|textPassword"
+            android:hint="@string/password"
             android:layout_marginTop="16dp"
             android:background="@drawable/btn1"/>
-
-        <TextView
-            android:id="@+id/errorTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter Credentials"
-            android:textColor="@color/red"
-            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnSign"
             android:layout_width="235dp"
             android:layout_height="51dp"
             android:gravity="center"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:textColorLink="#000000"
+            android:layout_marginTop="20dp"
             app:cornerRadius="0dp" />
 
         <LinearLayout
@@ -76,16 +69,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I do not have an account yet. "
+                android:text="@string/i_do_not_have_an_account_yet"
                 android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/createAccountBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textStyle="bold"/>
         </LinearLayout>
 

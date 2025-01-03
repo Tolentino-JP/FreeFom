@@ -1,4 +1,4 @@
-package com.example.freefom
+package com.example.freefrom
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -52,8 +52,6 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
                     val userId = auth.currentUser?.uid
                     if (userId != null) {
                         val db = Firebase.firestore
@@ -64,13 +62,7 @@ class SignUpActivity : AppCompatActivity() {
 
                         db.collection("users").document(userId).set(users)
                             .addOnSuccessListener {
-                                Log.d(TAG, "DocumentSnapshot successfully written!")
-                                Toast.makeText(
-                                    baseContext,
-                                    "User registered successfully.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
+                                Toast.makeText(baseContext, "User registered successfully.", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener { e ->
                                 Log.w(TAG, "Error writing document", e)
@@ -81,13 +73,7 @@ class SignUpActivity : AppCompatActivity() {
                         Log.w(TAG, "User ID is null after successful authentication.")
                     }
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
     }// end signUp

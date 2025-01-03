@@ -1,4 +1,4 @@
-package com.example.freefom
+package com.example.freefrom
 
 import org.junit.Test
 

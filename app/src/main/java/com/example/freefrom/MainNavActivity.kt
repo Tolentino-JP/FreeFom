@@ -1,11 +1,11 @@
-package com.example.freefom
+package com.example.freefrom
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.freefom.fragments.HomeFragment
-import com.example.freefom.fragments.SettingsFragment
-import com.example.freefom.fragments.SupportFragment
+import com.example.freefrom.fragments.HomeFragment
+import com.example.freefrom.fragments.SettingsFragment
+import com.example.freefrom.fragments.SupportFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 

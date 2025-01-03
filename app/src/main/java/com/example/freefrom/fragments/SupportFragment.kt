@@ -1,4 +1,4 @@
-package com.example.freefom.fragments
+package com.example.freefrom.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import com.example.freefom.R
+import com.example.freefrom.R
 
 class SupportFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.freefom.fragments
+package com.example.freefrom.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import com.example.freefom.MainNavActivity
-import com.example.freefom.R
-import com.example.freefom.SignInActivity
+import com.example.freefrom.MainNavActivity
+import com.example.freefrom.R
+import com.example.freefrom.SignInActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -36,14 +36,7 @@ class SettingsFragment : Fragment() {
     ): View {
         super.onCreate(savedInstanceState)
 
-        auth = Firebase.auth
-
-        view = inplater.inflate(R.layout.fragment_settings_page, container, false)
-        userId = auth.currentUser!!.uid
-
-        fetchData(userId)
-
-        return view
+        return inplater.inflate(R.layout.fragment_settings_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +45,7 @@ class SettingsFragment : Fragment() {
         editProfile = view.findViewById(R.id.btnEditProfile)
         changePassword = view.findViewById(R.id.btnEditPassword)
         signOut = view.findViewById(R.id.btnSignout)
+        fullName = view.findViewById(R.id.fullName)
 
         val context = activity as MainNavActivity
 
@@ -70,21 +64,32 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun fullName(fName: String, lName: String): String{
+    override fun onResume() {
+        super.onResume()
+
+        auth = Firebase.auth
+        userId = auth.currentUser!!.uid
+
+        fetchData(userId)
+
+    }
+
+    private fun fullNameUser(fName: String, lName: String): String{
         return "$fName $lName"
     }
 
     private fun fetchData(userId: String){
+
         db.collection("users")
             .document(userId)
             .get()
             .addOnSuccessListener {
-                fullName = view.findViewById(R.id.fullName)
+
 
                 val fName = it.getString("first name").toString()
                 val lName = it.getString("last name").toString()
 
-                fullName.text = fullName(fName,lName)
+                fullName.text = fullNameUser(fName,lName)
             }
     }
 }

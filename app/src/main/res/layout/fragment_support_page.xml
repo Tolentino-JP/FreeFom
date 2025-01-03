@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,7 @@
         android:id="@+id/textSupport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Support"
+        android:text="@string/support"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:fontFamily="@font/bukhari_script"
@@ -31,21 +30,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp">
 
-        <ImageView
-            android:id="@+id/search_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_search"
-            android:layout_marginEnd="22dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Emergency Assistance"
+            android:text="@string/emergency_assistance"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_toEndOf="@id/search_icon"
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
@@ -53,7 +46,7 @@
         android:id="@+id/textHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Help is available."
+        android:text="@string/help_is_available"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_below="@id/textMain"
@@ -81,9 +74,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/hopeline"
+                    android:src="@drawable/hope_line"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -97,7 +92,7 @@
                         android:id="@+id/name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="HopeLine"
+                        android:text="@string/hopeline"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -108,7 +103,8 @@
                         android:layout_height="wrap_content"
                         android:text="(02) 8804-4673"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -121,9 +117,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/national_mental_health"
+                    android:src="@drawable/national_mental_health"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -137,7 +135,7 @@
                         android:id="@+id/name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="National Mental Health Crisis Hotline 1"
+                        android:text="@string/national_mental_health_crisis_hotline_1"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -148,7 +146,8 @@
                         android:layout_height="wrap_content"
                         android:text="(0966) 351-4518"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -161,9 +160,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/national_mental_health"
+                    android:src="@drawable/national_mental_health"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -177,7 +178,7 @@
                         android:id="@+id/name3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="National Mental Health Crisis Hotline 2"
+                        android:text="@string/national_mental_health_crisis_hotline_2"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -188,7 +189,8 @@
                         android:layout_height="wrap_content"
                         android:text="(0908) 639-2672"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -201,9 +203,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/mood_harmony"
+                    android:src="@drawable/mood_harmony"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -217,7 +221,7 @@
                         android:id="@+id/name4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mood Harmony"
+                        android:text="@string/mood_harmony"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -228,7 +232,8 @@
                         android:layout_height="wrap_content"
                         android:text="(02) 8844-2941"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -241,9 +246,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/hopeline"
+                    android:src="@drawable/hope_line"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -260,7 +267,8 @@
                         android:text="HopeLine (Globe)"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/phone5"
@@ -268,7 +276,8 @@
                         android:layout_height="wrap_content"
                         android:text="(0917) 558-4673"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -281,9 +290,11 @@
                 android:padding="16dp"
                 android:layout_marginBottom="15dp">
 
-                <View
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/recovery_hub"
+                    android:src="@drawable/recovery_hub"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -297,7 +308,7 @@
                         android:id="@+id/name6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Recovery Hub"
+                        android:text="@string/recovery_hub"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -308,7 +319,8 @@
                         android:layout_height="wrap_content"
                         android:text="(03) 2344-2142"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>

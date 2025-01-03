@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:textSize="20sp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:textSize="20sp"
-        android:text="Done"
+        android:text="@string/done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/btn1"
-        android:hint="Addiction name"
+        android:hint="@string/addiction_name"
         android:importantForAutofill="no"
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/btn1"
-        android:hint="Start Date"
+        android:hint="@string/start_date"
         android:clickable="false"
         android:focusable="false"
         android:cursorVisible="false"
